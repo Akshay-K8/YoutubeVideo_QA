@@ -1,0 +1,14 @@
+# LangChain ecosystem
+langchain
+openai
+langchain-community
+chromadb
+tiktoken
+
+# Web scraping
+selenium
+beautifulsoup4
+
+# Streamlit UI
+streamlit
+dotenv
