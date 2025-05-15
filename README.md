@@ -18,7 +18,6 @@ A **Streamlit** web app that extracts transcripts directly from YouTube videos u
 ## 🎬 Dashboard
 
 ![dashboard](dashboard.jpg)
-*(Add your demo GIF or screenshot here)*
 
 ---
 
