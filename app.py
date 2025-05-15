@@ -1,5 +1,4 @@
 import streamlit as st
-from Scraping import extract_transcript_text
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
@@ -9,6 +8,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate
+from youtube_transcript_api import YouTubeTranscriptApi
 from dotenv import load_dotenv
 import os
 import tempfile
@@ -41,6 +41,29 @@ if "memory" not in st.session_state:
 
 if "processing" not in st.session_state:
     st.session_state.processing = False
+
+def video_to_transcript(url: str) -> str:
+    """
+    Extracts and returns the transcript text from a YouTube video URL.
+
+    Parameters:
+        url (str): YouTube video URL in the format containing '?v='.
+
+    Returns:
+        str: Full transcript text.
+    """
+    # Extract video ID using original split logic
+    video_id = url.split("=")[1]
+
+    try:
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
+    except Exception as e:
+        raise RuntimeError(f"Failed to fetch transcript: {e}")
+
+    # Join all text entries into a single string
+    transcript_text = " ".join(entry['text'] for entry in transcript)
+
+    return transcript_text
 
 def build_qa_bot(transcript_text):
     """Build the QA bot with conversation memory"""
@@ -156,7 +179,7 @@ def main():
     if st.session_state.processing:
         # Extract transcript
         with st.spinner("Processing video..."):
-            transcript = extract_transcript_text(youtube_url)
+            transcript = video_to_transcript(youtube_url)
             
             if transcript:
                 # Add success message
