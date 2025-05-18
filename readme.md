@@ -1,7 +1,3 @@
-Here’s your updated **README.md** rewritten to reflect the new **YouTubeTranscriptAPI-based transcript extraction** while preserving the overall structure and style — with emojis, better formatting, and clear language:
-
----
-
 # 🎥 YouTube Video Q\&A Bot 🤖
 
 A **Streamlit** web app that extracts transcripts directly from YouTube videos using the **YouTubeTranscriptAPI** and answers your questions about the video using **OpenAI's GPT models** and **LangChain**.
@@ -113,7 +109,3 @@ Open an issue or submit a PR if you have improvements, bug fixes, or ideas.
 ---
 
 If you face any issues, feel free to reach out. Happy building! 🛠️😊
-
----
-
-Let me know if you'd like to embed a **project logo**, add **badge shields**, or generate a **demo GIF**!
